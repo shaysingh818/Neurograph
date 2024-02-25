@@ -1,0 +1,2876 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ndarray/">
+      
+      
+        <link rel="next" href="../queue/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Matrix - Neurograph</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matrix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Neurograph" class="md-header__button md-logo" aria-label="Neurograph" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Neurograph
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Matrix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Neurograph" class="md-nav__button md-logo" aria-label="Neurograph" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Neurograph
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Core Library Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Core Library Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data Structures
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Data Structures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ndarray/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NDArray
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Matrix
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Matrix
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_vec" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_vec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_cols" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_cols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_arr_to_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_arr_to_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compare_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      compare_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniform_distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      uniform_distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      get
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_arr_to_matrix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_arr_to_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_vec" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_vec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix_free" class="md-nav__link">
+    <span class="md-ellipsis">
+      matrix_free
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#randomize" class="md-nav__link">
+    <span class="md-ellipsis">
+      randomize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fill_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      fill_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_matrix_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_matrix_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalar_multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      scalar_multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dot" class="md-nav__link">
+    <span class="md-ellipsis">
+      dot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elementwise_multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      elementwise_multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      transpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      difference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vectorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      vectorize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#im2col" class="md-nav__link">
+    <span class="md-ellipsis">
+      im2col
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjacencymatrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      AdjacencyMatrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AdjacencyMatrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_adj_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_adj_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_node_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_node_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tranpose_items_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      tranpose_items_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_node_by_id_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_node_by_id_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_adj_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_adj_mat
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extractors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extractors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation-graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computation Graph
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graph Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides and Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides and Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/tut1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with Data Structures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/tut1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Data Frames
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/tut1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using the Computation Graph
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/tut1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with Graph Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/tut1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training a Multi Layer Perceptron
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Releases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/1.01.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 1.01.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/1.0.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.9.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.9.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.8.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.8.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.7.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.7.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.6.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.6.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.5.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.5.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.4.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.4.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.3.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.3.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.2.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.2.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../releases/0.1.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V 0.1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_vec" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_vec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_cols" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_cols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_arr_to_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_arr_to_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compare_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      compare_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniform_distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      uniform_distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      get
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_arr_to_matrix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_arr_to_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_vec" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_vec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix_free" class="md-nav__link">
+    <span class="md-ellipsis">
+      matrix_free
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#randomize" class="md-nav__link">
+    <span class="md-ellipsis">
+      randomize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fill_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      fill_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_matrix_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy_matrix_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalar_multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      scalar_multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dot" class="md-nav__link">
+    <span class="md-ellipsis">
+      dot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elementwise_multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      elementwise_multiply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      transpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      difference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vectorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      vectorize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#im2col" class="md-nav__link">
+    <span class="md-ellipsis">
+      im2col
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjacencymatrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      AdjacencyMatrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AdjacencyMatrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_adj_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      init_adj_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_node_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_node_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tranpose_items_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      tranpose_items_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_node_by_id_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_node_by_id_mat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print_adj_mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_adj_mat
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Matrix</h1>
+
+<h3 id="matrix">Matrix</h3>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cols</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">arr</span><span class="p">;</span><span class="w"> </span>
+<span class="p">};</span><span class="w"> </span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="n">mat_t</span><span class="p">;</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="init_vec">init_vec</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rows</td>
+<td><code>int</code></td>
+<td>rows of matrix</td>
+</tr>
+<tr>
+<td>cols</td>
+<td><code>double</code></td>
+<td>cols of matrix</td>
+</tr>
+<tr>
+<td>identity</td>
+<td><code>bool</code></td>
+<td>Load identity of matrix</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">init_vec</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">identity</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="init_matrix">init_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rows</td>
+<td><code>int</code></td>
+<td>rows of matrix</td>
+</tr>
+<tr>
+<td>cols</td>
+<td><code>double</code></td>
+<td>cols of matrix</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">init_matrix</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cols</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="apply">apply</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>activation_function</td>
+<td><code>double(*activation_function)(double)</code></td>
+<td>function to apply to matrix</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">apply</span><span class="p">(</span><span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="n">activation_function</span><span class="p">)(</span><span class="kt">double</span><span class="p">),</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span><span class="w">  </span>
+</code></pre></div>
+<h4 id="copy_matrix">copy_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">copy_matrix</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="load_matrix">load_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><code>char*</code></td>
+<td>Name of file to load matrix from</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">load_matrix</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="to_rows">to_rows</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">**</span><span class="nf">to_rows</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="to_cols">to_cols</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">**</span><span class="nf">to_cols</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="batch_rows">batch_rows</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>int</code></td>
+<td>amount to batch the matrix rows by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">**</span><span class="nf">batch_rows</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="batch_matrix">batch_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>batch_size</td>
+<td><code>int</code></td>
+<td>amount to batch the matrix rows by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">**</span><span class="nf">batch_matrix</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batch_size</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="copy_arr_to_matrix">copy_arr_to_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>int</code></td>
+<td>rows</td>
+</tr>
+<tr>
+<td>n</td>
+<td><code>int</code></td>
+<td>cols</td>
+</tr>
+<tr>
+<td>arr</td>
+<td><code>double[m][n]</code></td>
+<td>2d array in C</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">copy_arr_to_matrix</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="compare_matrix">compare_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>first matrix to compare</td>
+</tr>
+<tr>
+<td>n</td>
+<td><code>mat_t</code></td>
+<td>second matrix to compare</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">compare_matrix</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="uniform_distribution">uniform_distribution</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>low</td>
+<td><code>double</code></td>
+<td>lower bound</td>
+</tr>
+<tr>
+<td>high</td>
+<td><code>double</code></td>
+<td>upper bound</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">uniform_distribution</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">low</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">high</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="get">get</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>row</td>
+<td><code>int</code></td>
+<td>row value index</td>
+</tr>
+<tr>
+<td>col</td>
+<td><code>int</code></td>
+<td>col value index</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="copy_arr_to_matrix_1">copy_arr_to_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>first matrix to copy</td>
+</tr>
+<tr>
+<td>v2</td>
+<td><code>mat_t</code></td>
+<td>second matrix to copy</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">copy_mat</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="print_vec">print_vec</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to print</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_vec</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="matrix_free">matrix_free</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to free</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">matrix_free</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span><span class="w">  </span>
+</code></pre></div>
+<h4 id="randomize">randomize</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to free</td>
+</tr>
+<tr>
+<td>n</td>
+<td><code>int</code></td>
+<td>bounded value</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">randomize</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="print_matrix">print_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to free</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_matrix</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">mat</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="fill_matrix">fill_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to free</td>
+</tr>
+<tr>
+<td>n</td>
+<td><code>int</code></td>
+<td>values to fill matrix with</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">fill_mat</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="save_matrix">save_matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to free</td>
+</tr>
+<tr>
+<td>filename</td>
+<td><code>char</code></td>
+<td>name of file to save matrix to</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">save_matrix</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">);</span><span class="w">   </span>
+</code></pre></div>
+<h4 id="copy_matrix_values">copy_matrix_values</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>first matrix instance</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">copy_matrix_values</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="entry">entry</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>first matrix instance</td>
+</tr>
+<tr>
+<td>row</td>
+<td><code>int</code></td>
+<td>row index</td>
+</tr>
+<tr>
+<td>col</td>
+<td><code>int</code></td>
+<td>col index</td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>double</code></td>
+<td>value to insert</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">entry</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="scalar_multiply">scalar_multiply</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>double</code></td>
+<td>value to multiply by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">scalar_multiply</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="power">power</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>power</td>
+<td><code>int</code></td>
+<td>value to multiply by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">scalar_multiply</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="dot">dot</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to dot product by</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance to dot product by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">dot</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="multiply">multiply</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to multiply by</td>
+</tr>
+<tr>
+<td>v2</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance to multiply by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">multiply</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="elementwise_multiply">elementwise_multiply</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>mat_t</code></td>
+<td>matrix instance to multiply by</td>
+</tr>
+<tr>
+<td>v2</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance to multiply by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">elementwise_multiply</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="add">add</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">add</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="scale">scale</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>double</code></td>
+<td>value to scale by</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">scale</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="scale_add">scale_add</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">scale_add</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="transpose">transpose</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">transpose</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="difference">difference</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>y</td>
+<td><code>mat_t</code></td>
+<td>second matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">difference</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="vectorize">vectorize</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">vectorize</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="im2col">im2col</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>mat_t</code></td>
+<td>matrix instance</td>
+</tr>
+<tr>
+<td>feature_map</td>
+<td><code>mat_t</code></td>
+<td>matrix instance of feature map</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">im2col</span><span class="p">(</span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">feature_map</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h3 id="adjacencymatrix">AdjacencyMatrix</h3>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">AdjacencyMatrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w">  </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">visited</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">used</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">directed</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">err</span><span class="p">;</span><span class="w">   </span>
+<span class="w">    </span><span class="n">mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">weights</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="n">node_t</span><span class="w"> </span><span class="o">**</span><span class="n">items</span><span class="p">;</span><span class="w">     </span>
+<span class="p">};</span><span class="w"> </span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">AdjacencyMatrix</span><span class="w"> </span><span class="n">adj_mat_t</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="init_adj_mat">init_adj_mat</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v</td>
+<td><code>int</code></td>
+<td>vertices</td>
+</tr>
+<tr>
+<td>e</td>
+<td><code>int</code></td>
+<td>edges</td>
+</tr>
+<tr>
+<td>directed</td>
+<td><code>bool</code></td>
+<td>toggle if graph is directed</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">init_adj_mat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">directed</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="add_node_mat">add_node_mat</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>adj_mat_t</code></td>
+<td>adjacency matrix instance</td>
+</tr>
+<tr>
+<td>src_id</td>
+<td><code>int</code></td>
+<td>source node id</td>
+</tr>
+<tr>
+<td>src</td>
+<td><code>char*</code></td>
+<td>character value for source node</td>
+</tr>
+<tr>
+<td>dst_id</td>
+<td><code>int</code></td>
+<td>destination node id</td>
+</tr>
+<tr>
+<td>dst</td>
+<td><code>char*</code></td>
+<td>character value for destination node</td>
+</tr>
+<tr>
+<td>weight</td>
+<td><code>double</code></td>
+<td>weight value for node relationship</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">add_node_mat</span><span class="p">(</span>
+<span class="w">    </span><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">src_id</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">dst_id</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">weight</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="tranpose_items_mat">tranpose_items_mat</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>adj_mat_t</code></td>
+<td>adjacency matrix instance</td>
+</tr>
+<tr>
+<td>r</td>
+<td><code>adj_mat_t</code></td>
+<td>second adjacency matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="nf">transpose_items_mat</span><span class="p">(</span><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">r</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="search_node_by_id_mat">search_node_by_id_mat</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>adj_mat_t</code></td>
+<td>adjacency matrix instance</td>
+</tr>
+<tr>
+<td>id</td>
+<td><code>int</code></td>
+<td>id of node to search</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">node_t</span><span class="w"> </span><span class="o">*</span><span class="nf">search_node_by_id_mat</span><span class="p">(</span><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="print_adj_mat">print_adj_mat</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td><code>adj_mat_t</code></td>
+<td>adjacency matrix instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_adj_mat</span><span class="p">(</span><span class="n">adj_mat_t</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>
